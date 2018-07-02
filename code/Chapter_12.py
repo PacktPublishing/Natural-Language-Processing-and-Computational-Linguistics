@@ -53,16 +53,16 @@ def read_corpus(file_name, tokens_only=False):
 train_corpus = list(read_corpus(lee_train_file))
 test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
 
-model = gensim.models.doc2vec.Doc2Vec(size=50, min_count=2, iter=100)
+model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=100)
 model.build_vocab(train_corpus) 
-model.train(train_corpus, total_examples=model.corpus_count, epochs=model.iter)
+model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
 
 models = [
     # PV-DBOW 
-    Doc2Vec(dm=0, dbow_words=1, size=200, window=8, min_count=10, iter=50),
+    Doc2Vec(dm=0, dbow_words=1, vector_size=200, window=8, min_count=10, epochs=50),
     
 # PV-DM w/average
-    Doc2Vec(dm=1, dm_mean=1, size=200, window=8, min_count=10, iter =50),
+    Doc2Vec(dm=1, dm_mean=1, vector_size=200, window=8, min_count=10, epochs=50),
 ]
 
 models[0].build_vocab(documents)
