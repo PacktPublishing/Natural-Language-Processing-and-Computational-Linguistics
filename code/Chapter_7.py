@@ -6,7 +6,7 @@ path_to_models_jar = 'path_to/stanford-parser-full-2014-08-27/stanford-parser-3.
 dependency_parser = StanfordDependencyParser(path_to_jar=path_to_jar, path_to_models_jar=path_to_models_jar)
 
 result = dependency_parser.raw_parse('I shot an elephant in my sleep')
-dep = result.next()
+dep = result._next_()
 list(dep.triples())
 
 # spaCy
